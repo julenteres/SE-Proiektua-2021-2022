@@ -7,7 +7,7 @@ void *Clock(void *hari_param){//Erlojua sortzeko
         while(done<tenp_kop){
             pthread_cond_wait(&cond, &tick_zenb);
             done=0;
-            cond_broadcast(&cond2);
+            pthread_cond_broadcast(&cond2);
         }
 		pthread_mutex_unlock(&tick_zenb);
 	}

@@ -16,6 +16,9 @@ Process_Queue *coreak;
 pthread_cond_t cond;
 pthread_cond_t cond2;
 
+pthread_mutex_t tick_zenb;
+pthread_mutex_t proz;
+
 void sortu_hariak(int maiztasuna, int core){//Hariak sortzeko
 
     int i, err;
