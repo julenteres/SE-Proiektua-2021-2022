@@ -12,7 +12,7 @@ void *Prozesadore(void *hari_param){
 		 if(time_quantum ==100){
 		        pthread_mutex_lock(&proz);
 		        time_quantum=0;
-		        x = Libre(&coreak);
+		        x = Libre(coreak);
 		        //Lehentasun handiena daukan corea lortu eta memoria fisikoan jarri.
 			PT=Lehentasuna(&coreak[x]);
 			if(PT.denb > 100){
@@ -20,7 +20,7 @@ void *Prozesadore(void *hari_param){
 				if(PT.lehen - 5 < 0){
 					PT.lehen=0;
 				}else{	
-					PT.lehen -5;
+					PT.lehen=PT.lehen - 5;
 				}
 				SartuIlaran(&coreak[x], PT);
 			}

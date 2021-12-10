@@ -51,7 +51,7 @@ struct PCB Lehentasuna(Process_Queue* PQ){
 	int zein;
 	for(int i=0; i<=PQ->luzera; i++){
 		if(bet==-1 && PQ->okup[i]!=-1){
-			bet==0;
+			bet=0;
 			handiena=PQ->process_queue[i];
 			zein=i;
 		}else{
@@ -66,6 +66,15 @@ struct PCB Lehentasuna(Process_Queue* PQ){
 	PQ->okup[zein]=-1;
 	PQ->erab--;
 	return handiena;
+}
+//Ilarak impìmatzeko
+void ListaImprimatu(Process_Queue *PQ){
+	int i;
+    int tam=100;
+	for(i=0; i<=tam; i++){
+		printf( "%d.", PQ->process_queue[i].pid);
+	}
+
 }
 
 //Core-ilaren libreena lortzeko

@@ -3,11 +3,12 @@
 
 #include <pthread.h>
 extern pthread_mutex_t tick_zenb;
-extern pthread_mutex_t cond;
-extern pthread_mutex_t cond2;
+extern pthread_cond_t cond;
+extern pthread_cond_t cond2;
 extern pthread_mutex_t proz;
 
 extern int time_quantum;
+extern int tam;
 int core;
 
 struct PCB{//Prozesu bakoitzaren datu egitura
@@ -26,15 +27,11 @@ typedef struct{
 	int erab;//Ilaran erabiliak dauden kopurua
 	int *okup;//Ilarako leku hori okupatua dagoen edo ez jakiteko(okupatua=1 ez okupatua=-1)
 }Process_Queue;
-
-   //Prozesu ilara sortu
-    Process_Queue *PQ;
-    //Coreak sortu
-    Process_Queue *coreak;
-
+extern Process_Queue *PQ;
+extern Process_Queue *coreak;
 void *Clock(void *hari_param);
 void *Timer(void *hari_param);
-void *Procces_Generator(void *hari_param);
+void *Process_Generator(void *hari_param);
 void *Secheduler_Dispatcher(void *hari_param);
 void *Prozesadore(void *hari_param);
 #endif

@@ -8,5 +8,6 @@ void SartuIlaran(Process_Queue *PQ, struct PCB pr);
 int Betea(Process_Queue *PQ);
 int Hutsa(Process_Queue *PQ);
 struct PCB Lehentasuna(Process_Queue *PQ);
+void ListaImprimatu(Process_Queue *PQ);
 int Libre (Process_Queue *coreak);
 #endif
