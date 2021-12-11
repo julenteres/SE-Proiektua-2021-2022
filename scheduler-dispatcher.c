@@ -12,8 +12,8 @@ void *Secheduler_Dispatcher(void *hari_param){
 				P=Lehentasuna(PQ);
 				zenb= Libre(coreak);
 				SartuIlaran(&coreak[zenb], P);
-                //printf("Kaixo\n");
-                //ListaImprimatu(coreak);
+                	//ListaImprimatu(PQ);
+                	ListaImprimatu(coreak);
 			}
 			pthread_mutex_unlock(&proz);
 		}	

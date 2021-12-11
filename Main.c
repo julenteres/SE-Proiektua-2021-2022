@@ -116,6 +116,7 @@ int main(int argc, char *argv[]){
  
     PQ=malloc(core *sizeof(Process_Queue));//Prozesu ilarak
     coreak=malloc(core *sizeof(Process_Queue));//Coreak
+    Hasieratu(PQ, 100);
 /*    for(int i=0; i<prozesu; i++){//zenbat hari sortu
     	Hasieratu(&PQ[i], 100);
     }*/
