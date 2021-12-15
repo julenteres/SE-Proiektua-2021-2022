@@ -13,7 +13,8 @@ void *Secheduler_Dispatcher(void *hari_param){
 				zenb= Libre(coreak);
 				SartuIlaran(&coreak[zenb], P);
                 	//ListaImprimatu(PQ);
-                	ListaImprimatu(coreak);
+                    //ListaImprimatu(coreak);
+                	
 			}
 			pthread_mutex_unlock(&proz);
 		}	

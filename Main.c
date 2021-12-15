@@ -115,15 +115,13 @@ int main(int argc, char *argv[]){
     pthread_cond_init(&cond2, NULL);
  
     PQ=malloc(core *sizeof(Process_Queue));//Prozesu ilarak
-    coreak=malloc(core *sizeof(Process_Queue));//Coreak
+  
+    //coreak=malloc(core *sizeof(Process_Queue));//Coreak
     Hasieratu(PQ, 100);
-/*    for(int i=0; i<prozesu; i++){//zenbat hari sortu
-    	Hasieratu(&PQ[i], 100);
-    }*/
 
-    for(int i=0; i<core; i++){//zenbat core erabili
-    	Hasieratu(&coreak[i], 100);
-    }
+    //for(int i=0; i<core; i++){//zenbat core erabili
+    	//Hasieratu(&coreak[i], 100);
+    //}
      //hariask sortu     
     sortu_hariak(maiztasuna, core);
     //mutexak kentzeko

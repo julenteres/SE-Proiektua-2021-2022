@@ -1,7 +1,7 @@
 #include "globals.h"
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <string.h>
 //Prozesuen hasieraketak egiteko
 void Hasieratu(Process_Queue *PQ, int tamaina){
 	PQ->erab=0;
@@ -15,12 +15,12 @@ void Hasieratu(Process_Queue *PQ, int tamaina){
 }
 
 //Ilaran prozesuak sartzeko
-void SartuIlaran(Process_Queue *PQ, struct PCB pr){
+void SartuIlaran(Process_Queue *PQ, struct PCB *pr){
 	int i;
 	for(i=0; i<PQ->luzera; i++){
 		if(PQ->okup[i]==-1){
 			PQ->erab++;
-			PQ->process_queue[PQ->erab]=pr;
+			memcpy(&(PQ->process_queue[i]), pr, sizeof(struct PCB));
 			PQ->okup[i]=1;
 			break;
 		}else{
@@ -71,10 +71,11 @@ struct PCB Lehentasuna(Process_Queue* PQ){
 void ListaImprimatu(Process_Queue *PQ){
 	int i;
     int tam=100;
+    printf( "**********");
 	for(i=0; i<=tam; i++){
 		printf( "%d.", PQ->process_queue[i].pid);
 	}
-
+    printf( "**********\n");
 }
 
 //Core-ilaren libreena lortzeko

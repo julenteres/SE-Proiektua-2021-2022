@@ -9,6 +9,7 @@ extern pthread_mutex_t proz;
 
 extern int time_quantum;
 extern int tam;
+extern int bar;
 int core;
 
 struct PCB{//Prozesu bakoitzaren datu egitura
