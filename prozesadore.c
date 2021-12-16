@@ -22,7 +22,7 @@ void *Prozesadore(void *hari_param){
 				}else{	
 					PT.lehen=PT.lehen - 5;
 				}
-				SartuIlaran(&coreak[x], PT);
+				SartuIlaran(&coreak[x], &PT);
 			}
                 pthread_mutex_unlock(&proz);  
             	}

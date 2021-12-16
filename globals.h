@@ -8,7 +8,7 @@ extern pthread_cond_t cond2;
 extern pthread_mutex_t proz;
 
 extern int time_quantum;
-extern int tam;
+extern int tamaina;
 extern int bar;
 int core;
 
@@ -28,6 +28,22 @@ typedef struct{
 	int erab;//Ilaran erabiliak dauden kopurua
 	int *okup;//Ilarako leku hori okupatua dagoen edo ez jakiteko(okupatua=1 ez okupatua=-1)
 }Process_Queue;
+
+struct CPU{
+    struct core *coreak;
+    int core_kop; 
+}
+
+struct core{
+    struct hari *hari_kop;
+    int hari_kop;
+}
+
+struct hari{
+    int id;
+    int kopurua;
+}
+
 extern Process_Queue *PQ;
 extern Process_Queue *coreak;
 void *Clock(void *hari_param);

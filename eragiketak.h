@@ -4,7 +4,7 @@
 #include "globals.h"
 
 void Hasieratu(Process_Queue *PQ, int tamaina);
-void SartuIlaran(Process_Queue *PQ, struct PCB pr);
+void SartuIlaran(Process_Queue *PQ, struct PCB *pr);
 int Betea(Process_Queue *PQ);
 int Hutsa(Process_Queue *PQ);
 struct PCB Lehentasuna(Process_Queue *PQ);

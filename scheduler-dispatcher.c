@@ -11,7 +11,7 @@ void *Secheduler_Dispatcher(void *hari_param){
 			if(!Hutsa(PQ)){
 				P=Lehentasuna(PQ);
 				zenb= Libre(coreak);
-				SartuIlaran(&coreak[zenb], P);
+				SartuIlaran(&coreak[zenb], &P);
                 	//ListaImprimatu(PQ);
                     //ListaImprimatu(coreak);
                 	

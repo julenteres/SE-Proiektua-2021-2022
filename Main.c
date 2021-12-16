@@ -98,6 +98,7 @@ int main(int argc, char *argv[]){
     char *m;
     int maiztasuna;
     int prozesu;
+    int tamaina=100;
     //int hariak;
     int core;
 
@@ -107,23 +108,25 @@ int main(int argc, char *argv[]){
     }
     maiztasuna = strtol(argv[1], &m, 10);//kanpotik sartu dugun maiztasuna lortzeko
     //hariak = strtol(argv[2], &h, 10);//sortuko ditugun prozesu ilara kopurua 
-    core = strtol(argv[2], &c, 10);//sortuko ditugun core kopurua
+    core_kop = strtol(argv[2], &c, 10);//sortuko ditugun core kopurua
+    hari_kop = strtol(argv[2], &c, 10);//Coreek edukiko dituen hariak
     //mutexa sortu
     pthread_mutex_init(&tick_zenb, NULL);
     pthread_mutex_init(&proz, NULL);
     pthread_cond_init(&cond, NULL);
     pthread_cond_init(&cond2, NULL);
  
-    PQ=malloc(core *sizeof(Process_Queue));//Prozesu ilarak
+    PQ=malloc(sizeof(Process_Queue));//Prozesu ilarak
   
     //coreak=malloc(core *sizeof(Process_Queue));//Coreak
-    Hasieratu(PQ, 100);
+    Sistema_hasieratu(core_kop, hari_kop);
+    Hasieratu(PQ, tamaina);
 
     //for(int i=0; i<core; i++){//zenbat core erabili
     	//Hasieratu(&coreak[i], 100);
     //}
      //hariask sortu     
-    sortu_hariak(maiztasuna, core);
+    sortu_hariak(maiztasuna, core_kop);
     //mutexak kentzeko
     pthread_mutex_destroy(&tick_zenb);
     pthread_mutex_destroy(&proz);
