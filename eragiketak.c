@@ -16,14 +16,14 @@ void Hasieratu(Process_Queue *PQ, int tamaina){
 
 void Sistema_hasieratu(int corea, int haria){
     struct CPU *cpuak = malloc(sizeof(struct CPU));
-    CPU-> core_kop = corea;
-    for(int i=0; i<core_kop; i++){
-        CPU->coreak[i] = malloc(sizeof(struct core));
-        CPU->coreak[i]->hari_kop = haria;
-        for(int j=0; j<hari_kop; j++){
-            CPU->coreak[i]->hari[j] = malloc(sizeof(struct hari));
-            CPU->coreak[i]->hari[j]->id=j;
-            CPU->coreak[i]->hari[j]->kopurua= haria;
+    cpuak->core_kop = corea;
+    for(int i=0; i<cpuak->core_kop; i++){
+        cpuak->coreak[i] = malloc(sizeof(struct core));
+        cpuak->coreak[i].hari_kop = haria;
+        for(int j=0; j<cpuak->coreak[i].hari_kop; j++){
+            cpuak->coreak[i].hariak[j] =malloc(sizeof(struct hari));
+            cpuak->coreak[i].hariak[j].id=j;
+            cpuak->coreak[i].hariak[j].kopurua= haria;
         }
     }
 }

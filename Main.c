@@ -6,7 +6,7 @@
 #include "globals.h"
 #include "clock.h"
 #include "timer.h"
-#include "process-generator.h"
+#include "loader.h"
 #include "scheduler-dispatcher.h"
 #include "prozesadore.h"
 
@@ -58,7 +58,7 @@ void sortu_hariak(int maiztasuna, int core){//Hariak sortzeko
     }
     i++; 
    
-    err = pthread_create(&hariak[i], NULL, Process_Generator, (void *)&h_p[i]);
+    err = pthread_create(&hariak[i], NULL, loader, (void *)&h_p[i]);
     if(err > 0){
     fprintf(stderr, "Errore bat gertatu da hariak sortzean.\n");
     exit(1);
@@ -98,6 +98,8 @@ int main(int argc, char *argv[]){
     char *m;
     int maiztasuna;
     int prozesu;
+    int core_kopuru;
+    int hari_kopuru;
     int tamaina=100;
     //int hariak;
     int core;
@@ -108,8 +110,19 @@ int main(int argc, char *argv[]){
     }
     maiztasuna = strtol(argv[1], &m, 10);//kanpotik sartu dugun maiztasuna lortzeko
     //hariak = strtol(argv[2], &h, 10);//sortuko ditugun prozesu ilara kopurua 
-    core_kop = strtol(argv[2], &c, 10);//sortuko ditugun core kopurua
-    hari_kop = strtol(argv[2], &c, 10);//Coreek edukiko dituen hariak
+    core_kopuru = strtol(argv[2], &c, 10);//sortuko ditugun core kopurua
+    hari_kopuru = strtol(argv[2], &c, 10);//Coreek edukiko dituen hariak
+    
+    //Memoria hasieratu
+    mem_fisikoa = malloc(MEM_SIZE*sizeof(int));
+    mem_addr = 1000;
+    mem_p = 0;
+    freespace = MEM_SIZE - mem_addr;
+    mem_free = malloc(MEM_SIZE*sizeof(struct free_spaces));
+    mem_free[0].addr = mem_addr;
+    mem_free[0].size = freespace;
+    free_count = 1;
+    
     //mutexa sortu
     pthread_mutex_init(&tick_zenb, NULL);
     pthread_mutex_init(&proz, NULL);
@@ -119,14 +132,14 @@ int main(int argc, char *argv[]){
     PQ=malloc(sizeof(Process_Queue));//Prozesu ilarak
   
     //coreak=malloc(core *sizeof(Process_Queue));//Coreak
-    Sistema_hasieratu(core_kop, hari_kop);
+    Sistema_hasieratu(core_kopuru, hari_kopuru);
     Hasieratu(PQ, tamaina);
 
     //for(int i=0; i<core; i++){//zenbat core erabili
     	//Hasieratu(&coreak[i], 100);
     //}
      //hariask sortu     
-    sortu_hariak(maiztasuna, core_kop);
+    sortu_hariak(maiztasuna, core_kopuru);
     //mutexak kentzeko
     pthread_mutex_destroy(&tick_zenb);
     pthread_mutex_destroy(&proz);
