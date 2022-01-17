@@ -10,6 +10,15 @@
 #include "scheduler-dispatcher.h"
 #include "prozesadore.h"
 
+// ALDAGAI GLOBALAK //
+int* mem_fisikoa;
+volatile int freespace;
+volatile int mem_addr;
+volatile int mem_p; //page addr
+struct free_spaces *mem_free;
+volatile int free_count;
+
+
 Process_Queue *PQ;
 Process_Queue *coreak;
 
