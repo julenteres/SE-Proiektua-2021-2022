@@ -18,12 +18,12 @@ void Sistema_hasieratu(int corea, int haria){
     struct CPU *cpuak = malloc(sizeof(struct CPU));
     cpuak->core_kop = corea;
     cpuak->coreak = malloc(corea*sizeof(struct core));
-    cpuak->coreak->hariak = malloc(haria*sizeof(struct hari));
+    //cpuak->coreak->hariak = malloc(haria*sizeof(struct hari));
     for(int i=0; i<cpuak->core_kop; i++){
-        //cpuak->coreak[i] = malloc(sizeof(struct core));
+        //cpuak->coreak[i] = malloc(sizeof(struct hari));
         cpuak->coreak[i].hari_kop = haria;
+        cpuak->coreak[i].hariak = malloc(haria * sizeof(struct hari));
         for(int j=0; j<cpuak->coreak[i].hari_kop; j++){
-            //cpuak->coreak[i].hariak[j] = malloc(sizeof(struct hari));
             cpuak->coreak[i].hariak[j].id=j;
             cpuak->coreak[i].hariak[j].kopurua= haria;
         }

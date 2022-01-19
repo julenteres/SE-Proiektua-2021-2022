@@ -47,7 +47,7 @@ while(1){
 	zenb = rand() % 1000;
 	if(zenb==0){
 		
-		sprintf(file, "progXXX.elf",i);
+		sprintf(file, "prog%d.elf",i);
     		elf=fopen(file, "r");//fitxategia ireki
     		if(elf=NULL){
     			fprintf(stderr, "[ERR] Ezin da fitxategia ireki");
