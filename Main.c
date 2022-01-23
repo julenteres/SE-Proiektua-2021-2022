@@ -16,8 +16,6 @@ volatile int freespace;
 volatile int mem_addr;
 volatile int mem_p; //page addr
 struct free_spaces *mem_free;
-volatile int free_count;
-
 
 Process_Queue *PQ;
 Process_Queue *coreak;
@@ -113,24 +111,24 @@ int main(int argc, char *argv[]){
     //int hariak;
     int core;
 
-    if(argc!=3){
-	printf("Erabilpena: Erabili nahi duzun maiztasuna, coreak sartu.\n");
+    if(argc!=4){
+	printf("Erabilpena: Erabili nahi duzun maiztasuna, coreak, hariak sartu.\n");
+	printf("Adibidez: :/main 200 8 4.\n");
 	exit(1);
     }
     maiztasuna = strtol(argv[1], &m, 10);//kanpotik sartu dugun maiztasuna lortzeko
     //hariak = strtol(argv[2], &h, 10);//sortuko ditugun prozesu ilara kopurua 
     core_kopuru = strtol(argv[2], &c, 10);//sortuko ditugun core kopurua
-    hari_kopuru = strtol(argv[2], &c, 10);//Coreek edukiko dituen hariak
+    hari_kopuru = strtol(argv[3], &c, 10);//Coreek edukiko dituen hariak
     
     //Memoria hasieratu
-    mem_fisikoa = malloc(MEM_SIZE*sizeof(int));
+    mem_fisikoa = malloc(MEM_SIZE*sizeof(int));//Memoria fisikoari memoria erreserbatu
     mem_addr = 1000;
     mem_p = 0;
-    freespace = MEM_SIZE - mem_addr;
-    mem_free = malloc(MEM_SIZE*sizeof(struct free_spaces));
+    freespace = MEM_SIZE - mem_addr;//Memoriako zati librea
+    mem_free = malloc(MEM_SIZE*sizeof(struct free_spaces));//Memoria libreari memoria erreserbatu
     mem_free[0].addr = mem_addr;
     mem_free[0].size = freespace;
-    free_count = 1;
     
     //mutexa sortu
     pthread_mutex_init(&tick_zenb, NULL);
@@ -139,14 +137,10 @@ int main(int argc, char *argv[]){
     pthread_cond_init(&cond2, NULL);
  
     PQ=malloc(sizeof(Process_Queue));//Prozesu ilarak
-  
-    //coreak=malloc(core *sizeof(Process_Queue));//Coreak
+
     Sistema_hasieratu(core_kopuru, hari_kopuru);
     Hasieratu(PQ, tamaina);
 
-    //for(int i=0; i<core; i++){//zenbat core erabili
-    	//Hasieratu(&coreak[i], 100);
-    //}
      //hariask sortu     
     sortu_hariak(maiztasuna, core_kopuru);
     //mutexak kentzeko

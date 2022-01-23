@@ -2,27 +2,26 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-//Prozesuen hasieraketak egiteko
+//Prozesu ilararen hasieraketak egiteko
 void Hasieratu(Process_Queue *PQ, int tamaina){
 	PQ->erab=0;
 	PQ->luzera=tamaina;
-	PQ->process_queue= malloc(tamaina * sizeof(struct PCB));	
-	PQ->okup= malloc(tamaina * sizeof(int));
+	PQ->process_queue= malloc(tamaina * sizeof(struct PCB));//Prozesu ilararentzako memoria erreserbatu
+	PQ->okup= malloc(tamaina * sizeof(int));//Prozesu ilarako elementu bakoitzeko memoria erreserbatu 
 	int i;
-	for(i=0; i<tamaina; i++){
+	for(i=0; i<tamaina; i++){//Ilara osoko zati guztien okup aldagaia -1 jartzeko
 		PQ-> okup[i]=-1;
 	}
 }
 
+//Sistema hasierazeko
 void Sistema_hasieratu(int corea, int haria){
-    struct CPU *cpuak = malloc(sizeof(struct CPU));
+    struct CPU *cpuak = malloc(sizeof(struct CPU));//CPU estructuraren memoria erreserbatu
     cpuak->core_kop = corea;
-    cpuak->coreak = malloc(corea*sizeof(struct core));
-    //cpuak->coreak->hariak = malloc(haria*sizeof(struct hari));
+    cpuak->coreak = malloc(corea*sizeof(struct core));//Core estrukturarren memoria erreserbatu
     for(int i=0; i<cpuak->core_kop; i++){
-        //cpuak->coreak[i] = malloc(sizeof(struct hari));
         cpuak->coreak[i].hari_kop = haria;
-        cpuak->coreak[i].hariak = malloc(haria * sizeof(struct hari));
+        cpuak->coreak[i].hariak = malloc(haria * sizeof(struct hari));//Hari estrukturaren memoria erreserbatu
         for(int j=0; j<cpuak->coreak[i].hari_kop; j++){
             cpuak->coreak[i].hariak[j].id=j;
             cpuak->coreak[i].hariak[j].kopurua= haria;
@@ -36,7 +35,7 @@ void SartuIlaran(Process_Queue *PQ, struct PCB *pr){
 	for(i=0; i<PQ->luzera; i++){
 		if(PQ->okup[i]==-1){
 			PQ->erab++;
-			memcpy(&(PQ->process_queue[i]), pr, sizeof(struct PCB));
+			memcpy(&(PQ->process_queue[i]), pr, sizeof(struct PCB));//Prozesua ilaran kopiatzeko
 			PQ->okup[i]=1;
 			break;
 		}else{

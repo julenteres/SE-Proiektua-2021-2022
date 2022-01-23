@@ -13,7 +13,7 @@ void *Timer(void *hari_param){
         done++;
         if(tick==maiztasuna){   
             tick++;
-            time_quantum++;   
+            time_quantum++; //Quantuma handitzen joan  
         }
         pthread_cond_signal(&cond);
         pthread_cond_wait(&cond2, &tick_zenb);

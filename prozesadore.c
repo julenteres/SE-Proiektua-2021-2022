@@ -13,16 +13,15 @@ void *Prozesadore(void *hari_param){
 		        pthread_mutex_lock(&proz);
 		        time_quantum=0;
 		        x = Libre(coreak);
-		        //Lehentasun handiena daukan corea lortu eta memoria fisikoan jarri.
 			PT=Lehentasuna(&coreak[x]);
 			if(PT.denb > 100){
-				PT.denb=PT.denb- 100;
+				PT.denb=PT.denb- 100;//Prozesuaren denbora jaisteko
 				if(PT.lehen - 5 < 0){
 					PT.lehen=0;
 				}else{	
-					PT.lehen=PT.lehen - 5;
+					PT.lehen=PT.lehen - 5;//Lehentasuna jaisteko
 				}
-				SartuIlaran(&coreak[x], &PT);
+				SartuIlaran(&coreak[x], &PT);//Corearen ilaran sartzeko
 			}
                 pthread_mutex_unlock(&proz);  
             	}
